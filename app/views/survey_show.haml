@@ -3,4 +3,16 @@
   .jumbotron
     %h1= @survey.title
     %p= @survey.description
+  %form{ action: "/protected/surveys/#{@survey.id}", method: 'post'}
+
+    - @survey.questions.each do |question|
+      %fieldset
+        %legend= question.content
+        - question.choices.each do |choice|
+          %label.radio.inline
+            %input{type: 'radio', name: "survey[#{question.id}]", value: choice.id }
+            = choice.content
+        %br
+    %hr
+    %input.btn.btn-large.btn-primary{type: 'submit', value: 'Submit Survey'}
 
