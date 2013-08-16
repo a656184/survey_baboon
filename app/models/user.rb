@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   has_many :surveys
   has_many :survey_participations
 
-  validate :email, presence: true, uniqueness: true
+  validates :email, presence: true, uniqueness: true
 
   def self.authenticate(email, password)
 
