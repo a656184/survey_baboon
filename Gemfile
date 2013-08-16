@@ -1,4 +1,8 @@
-source :rubygems
+source 'https://rubygems.org'
+
+gem 'haml'
+gem 'pry'
+gem 'bcrypt-ruby'
 
 # PostgreSQL driver
 gem 'pg'
@@ -16,6 +20,8 @@ gem 'activerecord'
 gem 'rake'
 
 gem 'shotgun'
+
+gem 'coffee-script'
 
 group :test do
   gem 'faker'

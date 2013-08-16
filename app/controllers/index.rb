@@ -1,4 +1,8 @@
+before do
+  @errors = session.delete(:errors) || []
+end
+
 get '/' do
-  # Look in app/views/index.erb
-  erb :index
+  @users = User.all if logged_in?
+  haml :index
 end
