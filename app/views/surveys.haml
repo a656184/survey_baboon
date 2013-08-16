@@ -1,0 +1,7 @@
+.container.well
+  %h1 Surveys!
+  %dl.dl-horizontal
+    - @surveys.each do |survey|
+      %dt.span9= survey.title
+      %dd= survey.description
+
