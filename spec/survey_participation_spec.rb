@@ -9,7 +9,9 @@ describe SurveyParticipation do
     @survey_participation = SurveyParticipation.new
   end
 
-  it 
+  it { should respond_to(:user) }
+  it { should respond_to(:survey) }
+  it { should respond_to(:completion_status) }
 
   describe 'user' do
 
