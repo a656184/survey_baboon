@@ -1,0 +1,13 @@
+.container.well
+  
+  %br
+  .jumbotron
+    %h1= @survey_participation.survey.title
+    %p= @survey_participation.survey.description
+
+  
+  - @survey_participation.answers.each do |answer|
+    .answer
+      %h3= answer.question.content
+      %blockquote= answer.choice.content
+      %hr
