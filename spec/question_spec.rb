@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "Question" do
   before(:all) do 
-    raise RuntimeError, "Be sure to run rake db:migrate before running these specs" unless ActiveRecord:Migrator.current_version > 0   
+    raise RuntimeError, "Be sure to run rake db:migrate before running these specs" unless ActiveRecord::Migrator.current_version > 0   
   end
 
   it "Should have a 'quetions' table" do
@@ -24,7 +24,7 @@ describe "Question" do
     end
   end
 
-  it "Should have content"
+  it "Should have content" do
 
     test_question_args = {}
 
@@ -33,7 +33,7 @@ describe "Question" do
     test_question.should_not be_valid
   end
 
-  it "Should have content more than 0 characters and less than 250 characters"
+  it "Should have content more than 0 characters and less than 251 characters" do
 
     test_question_args = { content: ''}
 

@@ -2,8 +2,11 @@ require 'spec_helper'
 
 
 describe "Survey" do #title of test
+  
   before(:all) do 
-    raise RuntimeError, "Be sure to run rake db:migrate before running these specs" unless ActiveRecord:Migrator.current_version > 0   
+    raise RuntimeError, "Be sure to run rake db:migrate before running these specs" unless ActiveRecord::Migrator.current_version > 0   
+    
+    @survey = Survey.new({:title => 'this is the title', :description => ('h'*200)})
   end
 
   it "Should have a 'surveys' table" do
@@ -25,49 +28,38 @@ describe "Survey" do #title of test
     end
   end
 
-  it "Should have a title" do
+  describe "Title" do 
 
-    test_survey_args = { description: 'this is the description' }
+    it "Should have a title" do
 
-    test_survey = Survey.new(test_survey_args)
+      @survey.title = nil
+      @survey.should_not be_valid
+    end
 
-    test_survey.should_not be_valid
+    it "Should have a title more than 4 characters and less than 26 characters" do
+      @survey.title = "tiny"
+      @survey.should_not be_valid
+
+      @survey.title =  'h'*26
+      @survey.should_not be_valid
+    end
+
   end
 
-  it "Should have a title more than 5 characters and less than 25 characters"
-    test_survey_args = { title: "tiny"}
+  describe "Description" do
 
-    test_survey = Survey.new(test_survey_args)
+    it "Should have a description" do
+      @survey.description = nil
+      @survey.should_not be_valid
+    end
 
-    test_survey.should_not be_valid
+    it "Should have a description more than 9 characters and less than 251 characters" do
 
-    test_survey_args_2 = {title: 'h'*26}
+      @survey.description = ('h'*251)
+      @survey.should_not be_valid
 
-    test_survey_2 = Survey.new(test_survey_args_2)
-    
-    test_survey_2.should_not be_valid
-  end
-
-  it "Should have a description"
-    test_survey_args = { title: 'this is the title'}
-
-    test_survey = Survey.new(test_survey_args)
-
-    test_survey.should_not be_valid
-  end
-
-  it "Should have a description more than 10 characters and less than 250 characters"
-
-    test_survey_args = { title: 'this is the title' description: ('h'*251)}
-
-    test_survey = Survey.new(test_survey_args)
-
-    test_survey.should_not be_valid
-
-    test_survey_args_2 = { title: 'this is the title' description: 'small'}
-
-    test_survey_2 = Survey.new(test_survey_args_2)
-
-    test_survey_2.should_not be_valid
+      @survey.description = 'small'
+      @survey.should_not be_valid
+    end
   end
 end
