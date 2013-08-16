@@ -5,7 +5,7 @@ Question.destroy_all
 Choice.destroy_all
 
 10.times do 
-  title = Faker::Company.catch_phrase
+  title = Faker::Company.catch_phrase.split(' ')[0..1].join(' ')
   description = Faker::Company.bs
   survey = Survey.create(title: title, description: description)
   10.times do
