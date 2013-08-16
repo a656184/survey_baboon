@@ -4,6 +4,8 @@
     %h1= @survey.title
     %p= @survey.description
   %form{ action: "/protected/surveys/#{@survey.id}", method: 'post'}
+    
+    %input{type: 'hidden', name: 'survey_participation_id', value: @survey_participation.id }
 
     - @survey.questions.each do |question|
       %fieldset

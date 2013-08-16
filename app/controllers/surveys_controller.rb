@@ -5,6 +5,13 @@ end
 
 get '/protected/surveys/:survey_id' do
   @survey = Survey.find_by_id(params[:survey_id])
+
+  @survey_participation = SurveyParticipation.new
+  # @survey_participation.user = current_user
+  # @survey_participation.survey = @survey
+  # @survey_participation.completion_status = 'incomplete'
+  # @survey_participation.save
+
   haml :survey_show
 end
 
