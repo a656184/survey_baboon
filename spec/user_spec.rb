@@ -1,10 +1,12 @@
 require 'spec_helper'
 require 'BCrypt'
 
+User.destroy_all
 
 describe User do
   
   before do
+
     @user = User.new({email: "martine@frenchgirl.com",
                      password: "password"})
   end
@@ -20,7 +22,8 @@ describe User do
 #'RACK_ENV=test rake db:setup', and then run tests. Solution?
   it { should be_valid, "only passes after 'RACK_ENV=test rake db:setup'" }
 
-  describe "email"
+  describe "email" do
+
     describe "when it is not present" do 
       before { @user.email = nil }
       it { should_not be_valid }
@@ -35,15 +38,20 @@ describe User do
       it { should_not be_valid }
     end
 
+  end
+
   describe "password" do
+
     describe "when it is not present" do
       before { @user.password = nil }
       it { should_not be_valid }
     end
-  end
+    
 
-  it "should encrypt password" do 
-    @user.password.class == BCrypt::Password
+    it "should encrypt password" do 
+      @user.password.class == BCrypt::Password
+    end
+
   end
 
 end
