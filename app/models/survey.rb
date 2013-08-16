@@ -5,5 +5,4 @@ class Survey < ActiveRecord::Base
   validates :title, :description, presence: true
   validates :title , length: {in: 5..25}
   validates :description , length: {in: 10..250}
-
 end
