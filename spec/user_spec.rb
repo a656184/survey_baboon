@@ -35,12 +35,12 @@ describe User do
       it { should_not be_valid }
     end
 
-#   describe "password" do
-#     describe "when it is not present" do
-#       before { @user.password = "" }
-#       it { should_not be_valid }
-#     end
-#   end
+  describe "password" do
+    describe "when it is not present" do
+      before { @user.password = nil }
+      it { should_not be_valid }
+    end
+  end
 
   it "should encrypt password" do 
     @user.password.class == BCrypt::Password

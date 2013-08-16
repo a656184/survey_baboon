@@ -5,7 +5,6 @@ describe SurveyParticipation do
   before do
     @user = User.create(email: 'vise890@gmail.com')
     @survey = Survey.create(title: 'my_surv')
-    @survey.questions << Question.create(content: 'my_q')
     @survey_participation = SurveyParticipation.new
   end
 
