@@ -2,7 +2,7 @@
   %h1 Surveys!
   %dl.dl-horizontal
     - @surveys.each do |survey|
-      %a{ href: "/protected/surveys/#{survey.id}"}
+      %a{ href: "/protected/surveys/#{survey.id}/participation"}
         %dt.span9= survey.title
       %dd= survey.description
 
