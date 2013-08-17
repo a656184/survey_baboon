@@ -1,6 +1,7 @@
 # show all surveys
 get '/protected/surveys' do
   @surveys = Survey.all
+  @user = User.find(session[:user_id])
   haml :surveys
 end
 
