@@ -4,6 +4,7 @@
     %title
 
     %link(rel='stylesheet' href='/css/bootstrap.css')
+    %link(rel="stylesheet" href="/font-awesome/css/font-awesome.min.css")
     %link(rel='stylesheet' href='/css/application.css')
     %script(src='//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js')
 
@@ -12,17 +13,20 @@
 
   %body
 
-    %nav
-      - if current_user
-        %ul
+
+    %nav.navbar.navbar-inverse.navbar-fixed_top
+      .navbar-header.navbar-brand
+        = "Survey Bab<i class='icon-heart icon-large icon-flip-vertical'></i>n"
+      %ul.nav.navbar-nav
+        - if current_user
           %li
             %a.sign-out{ href: "/sessions/delete" }
               Sign Out
-      - else
-        %li
-          %a{ href: "/sessions/new" } Sign In
-        %li
-          %a{ href: "/users/new" } Sign Up
+        - else
+          %li
+            %a{ href: "/sessions/new" } Sign In
+          %li
+            %a{ href: "/users/new" } Sign Up
 
     .row.content
       - if @errors.try(:any?)
