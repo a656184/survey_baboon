@@ -7,6 +7,7 @@ end
 
 # Form for new survey creation
 get '/protected/surveys/new' do
+
   haml :new_survey
 end
 
@@ -17,14 +18,29 @@ post '/protected/surveys' do
   params[:survey][:user_id] = session[:user_id]
   survey = Survey.create(params[:survey])
 
-  params[:questions].each do |question|
+  unless survey.errors.any?
 
-    new_question = Question.create(survey_id: survey.id, content: question['content'] )
+    params[:questions].each do |question|
 
-    question['choices'].each do |choice|
-      choice = Choice.create(question_id: new_question.id, content: choice)
+      new_question = Question.create(survey_id: survey.id, content: question['content'] )
+
+      question['choices'].each do |choice|
+        choice = Choice.create(question_id: new_question.id, content: choice)
+      end
     end
+    redirect '/protected/surveys'
+  else
+    @error_messages = []
+
+      survey.errors.messages.each do |attribute, error|
+        error.each do |error|
+          @error_messages << "#{attribute} #{error}"
+        end
+      end
+
+      @error_messages.reverse!
+    haml :new_survey
   end
 
-  redirect '/protected/surveys'
+
 end
