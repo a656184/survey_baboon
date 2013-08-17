@@ -13,21 +13,43 @@
     %hr
 
     %h3 Questions
-    %div.question_board
+    %div#question_board
       %div.question
-        %label{ for: "question" } Question 1
-        %input.form-control{ type: "text", name: "question[content]", placeholder: "Your question?" }
+        %hr
+        %input.form-control{ type: "text", name: "questions[][content]", placeholder: "Your question?" }
 
         %h4 Choices
         %div.choice_board
           %div.choice
-            %label{ for: "question" } Choice 1
-            %input.form-control{ type: "text", name: "choice[content]", placeholder: "Your question?" }
-          %hr
-        %a.btn.btn-primary.add_choice{ href: '#'} Add a choice
+            %input.choice_input{ type: "text", name: "questions[][choices][]", placeholder: "Your question?" }
+            %a.btn.btn-primary.add_choice{ href: '#', :style => "display:none"} +
+            %hr
 
     %hr
     %a.btn.btn-primary.add_question{ href: '#'} Add a question
     %hr
     %br
     %input.btn.btn-success{ type: "submit", value: "Submit" }
+
+// -------------------------------------
+
+
+%div#new_question{:style => "display: none" }
+  %div.question
+    %hr
+    %input.form-control{ type: "text", name: "questions[][content]", placeholder: "Your question?" }
+
+    %h4 Choices
+    %div.choice_board
+      %div.choice
+        %input.choice_input{ type: "text", name: "questions[][choices][]", placeholder: "Your question?" }
+        %a.btn.btn-primary.add_choice{ href: '#', :style => "display:none"} +
+        %hr
+
+
+%div#new_choice{:style => "display: none" }
+  %div.choice
+    %input.choice_input{ type: "text", name: "questions[][choices][]", placeholder: "Your question?" }
+    %a.btn.btn-primary.add_choice{ href: '#', :style => "display:none"} +
+    %a.btn.btn-danger.remove_choice{ href: '#'} -
+    %hr

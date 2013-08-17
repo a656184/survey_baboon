@@ -14,10 +14,11 @@
   %body
 
 
-    %nav.navbar.navbar-inverse.navbar-fixed_top
+    %div.navbar.navbar-inverse.navbar-fixed-top
       .navbar-header.navbar-brand
         %a{ href: '/' }= "Survey Bab<i class='icon-heart icon-large icon-flip-vertical'></i>n"
       %ul.nav.navbar-nav
+
         - if current_user
           %li
             %a.sign-out{ href: "/sessions/delete" }
@@ -27,6 +28,8 @@
             %a{ href: "/sessions/new" } Sign In
           %li
             %a{ href: "/users/new" } Sign Up
+
+      %a.btn.btn-primary.pull-right{href: "/protected/surveys/new"} New survey
 
     .row.content
       - if @errors.try(:any?)

@@ -1,5 +1,5 @@
 # show all surveys
-get '/protected/surveys' do 
+get '/protected/surveys' do
   @surveys = Survey.all
   haml :surveys
 end
@@ -17,14 +17,14 @@ post '/protected/surveys' do
   params[:survey][:user_id] = session[:user_id]
   survey = Survey.create(params[:survey])
 
-  params[:question][:survey_id] = survey.id
-  question = Question.create(params[:question])
+  params[:questions].each do |question|
 
-  params[:choice][:question_id] = question.id
-  choice = Choice.create(params[:choice])
+    new_question = Question.create(survey_id: survey.id, content: question['content'] )
+
+    question['choices'].each do |choice|
+      choice = Choice.create(question_id: new_question.id, content: choice)
+    end
+  end
 
   redirect '/protected/surveys'
-
 end
-
-

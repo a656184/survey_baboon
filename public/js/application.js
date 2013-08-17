@@ -7,13 +7,30 @@ $(document).ready(function() {
 
 
 
-  $(".add_question").on('click', function(){
-    $("this").closest(".question_board").append($("div.question"));
-    console.log("here");
+  $(".add_question").on('click', function(e){
+    e.preventDefault();
+    $("#question_board").append($.trim($("#new_question").html()));
   });
 
-  $(".add_choice").on('click', function(){
-    $("this").closest(".choice_board").append($("div.choice"));
+
+  $('#question_board').on('keyup', '.choice_input', function () {
+   if(!($(this).val() === '')){
+      $(this).next(".add_choice").css("display","inline");
+    } else {
+      $(this).next(".add_choice").css("display","none");
+   }
+ });
+
+
+  $("#question_board").on('click', '.add_choice', function(e){
+    e.preventDefault();
+    $(this).closest(".choice_board").append($.trim($("#new_choice").html()));
+  });
+
+  $("#question_board").on('click', '.remove_choice', function(e){
+    e.preventDefault();
+    $(this).closest(".choice").remove();
+    console.log($(this).closest(".choice"));
   });
 
 
