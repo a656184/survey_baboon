@@ -13,20 +13,21 @@
     %hr
 
     %h3 Questions
+    %div.question_board
+      %div.question
+        %label{ for: "question" } Question 1
+        %input.form-control{ type: "text", name: "question[content]", placeholder: "Your question?" }
 
-    %label{ for: "question" } Question 1
-    %input.form-control{ type: "text", name: "question[content]", placeholder: "Your question?" }
+        %h4 Choices
+        %div.choice_board
+          %div.choice
+            %label{ for: "question" } Choice 1
+            %input.form-control{ type: "text", name: "choice[content]", placeholder: "Your question?" }
+          %hr
+        %a.btn.btn-primary.add_choice{ href: '#'} Add a choice
 
-
-    %h4 Choices
-    
-    %label{ for: "question" } Choice 1
-    %input.form-control{ type: "text", name: "choice[content]", placeholder: "Your question?" }
-    %br
-    %a.btn.btn-primary{ href: '#'} Add a choice
     %hr
-    %a.btn.btn-primary{ href: '#'} Add a question
-
+    %a.btn.btn-primary.add_question{ href: '#'} Add a question
     %hr
     %br
     %input.btn.btn-success{ type: "submit", value: "Submit" }
