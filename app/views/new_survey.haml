@@ -1,6 +1,32 @@
 .container.well
   %h1 New Survey!
-  %dl.dl-horizontal
-    - @surveys.each do |survey|
-      %dt.span9= survey.title
-      %dd= survey.description
+  %p Fill this form to create a survey.
+
+  %form#new-survey{ method: "post", action: "/protected/surveys" }
+
+    %label{ for: "title" } Title
+    %input.form-control{ type: "text", name: "survey[title]", placeholder: "My Survey" }
+
+    %label{ for: "description" } Description
+    %input.form-control{ type: "text", name: "survey[description]", placeholder: "10 up to 250 characters" }
+
+    %hr
+
+    %h3 Questions
+
+    %label{ for: "question" } Question 1
+    %input.form-control{ type: "text", name: "question[content]", placeholder: "Your question?" }
+
+
+    %h4 Choices
+    
+    %label{ for: "question" } Choice 1
+    %input.form-control{ type: "text", name: "choice[content]", placeholder: "Your question?" }
+    %br
+    %a.btn.btn-primary{ href: '#'} Add a choice
+    %hr
+    %a.btn.btn-primary{ href: '#'} Add a question
+
+    %hr
+    %br
+    %input.btn.btn-success{ type: "submit", value: "Submit" }

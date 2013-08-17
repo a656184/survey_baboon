@@ -3,6 +3,31 @@ get '/protected/surveys' do
   haml :surveys
 end
 
+
+# Form for new survey creation
+get '/protected/surveys/new' do
+  haml :new_survey
+end
+
+
+# Create a new survey
+post '/protected/surveys' do
+
+  params[:survey][:user_id] = session[:user_id]
+  survey = Survey.create(params[:survey])
+
+  params[:question][:survey_id] = survey.id
+  question = Question.create(params[:question])
+
+  params[:choice][:question_id] = question.id
+  choice = Choice.create(params[:choice])
+
+  redirect '/protected/surveys'
+
+end
+
+
+
 get '/protected/surveys/:survey_id' do
   @survey = Survey.find_by_id(params[:survey_id])
 
@@ -42,10 +67,5 @@ post '/protected/surveys/:survey_id' do
 end
 
 
-get '/protected/surveys/new' do
 
-end
 
-post '/protected/surveys/new' do
-  
-end
