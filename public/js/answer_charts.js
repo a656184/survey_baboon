@@ -1,10 +1,10 @@
 $(document).ready(function(){
-  var ctx = $('#questionDisplay').get(0).getContext('2d');
   generatedChartForSelectedOption();
 
   function generateChartForQuestion(questionID) {
 
     function generateChart(data) {
+      var ctx = $('#questionDisplay').get(0).getContext('2d');
       new Chart(ctx).Doughnut(data);
     };
 
