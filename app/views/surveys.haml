@@ -1,5 +1,6 @@
 .container.well
   %h1 Surveys!
+  %h2 Welcome #{@user.email}
   %dl.dl-horizontal
     - @surveys.each do |survey|
       %a{ href: "/protected/surveys/#{survey.id}/participation"}

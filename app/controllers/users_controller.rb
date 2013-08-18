@@ -4,6 +4,10 @@ end
 
 post '/users' do
   user = User.create(params[:user])
-  session[:errors] = user.errors.full_messages
+  if user
+    session[:user_id] = user.id
+  else
+    session[:errors] = user.errors.full_messages
+  end
   redirect to '/'
 end

@@ -1,5 +1,6 @@
 before do
   @errors = session.delete(:errors) || []
+  @user_id = session[:user_id]
 end
 
 before '/protected/*' do
