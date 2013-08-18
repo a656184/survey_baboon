@@ -6,7 +6,8 @@ $(document).ready(function() {
   // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
   var titleValid = false
   var descriptionValid = false
-
+  var questionValid = false
+  var choiceValid = false
 
   $('#title').on('keyup', function(){
     titleValid = updateCounter($(this), 25, 0);
@@ -17,6 +18,18 @@ $(document).ready(function() {
     descriptionValid = updateCounter($(this), 250, 10)
     updateSubmit();
   });
+
+  $('#question_board').on('keyup', '.question_field', function(){
+    questionValid = updateCounter($(this), 250, 0)
+    updateSubmit();
+  });
+
+  $('#question_board').on('keyup', '.choice_input', function(){
+    console.log($(this))
+    choiceValid = updateCounter($(this), 10000, 0)
+    updateSubmit();
+  });
+
 
   $(".add_question").on('click', function(e){
     e.preventDefault();
@@ -70,7 +83,7 @@ $(document).ready(function() {
   function updateSubmit(){
     console.log(titleValid)
     console.log(descriptionValid)
-    if (titleValid && descriptionValid) {
+    if (titleValid && descriptionValid && questionValid && choiceValid) {
       $('#submit').removeAttr("disabled");
     }
     else {

@@ -27,12 +27,16 @@
     %div#question_board
       %div.question
         %hr
-        %input.form-control{ type: "text", name: "questions[][content]", placeholder: "Your question?" }
+        %input.question_field.form-control{ type: "text", name: "questions[][content]", placeholder: "Your question?" }
+        %span.text_counter 250
+        characters left
+        %br
+
 
         %h4 Choices
         %div.choice_board
           %div.choice
-            %input.choice_input{ type: "text", name: "questions[][choices][]", placeholder: "Your question?" }
+            %input.choice_input{ type: "text", name: "questions[][choices][]", placeholder: "A choice" }
             %a.btn.btn-primary.add_choice{ href: '#', :style => "display:none"} +
             %hr
 
@@ -48,12 +52,14 @@
 %div#new_question{:style => "display: none" }
   %div.question
     %hr
-    %input.form-control{ type: "text", name: "questions[][content]", placeholder: "Your question?" }
+    %input.question_field.form-control{ type: "text", name: "questions[][content]", placeholder: "Your question?" }
+    %span.text_counter 250
+    characters left
 
     %h4 Choices
     %div.choice_board
       %div.choice
-        %input.choice_input{ type: "text", name: "questions[][choices][]", placeholder: "Your question?" }
+        %input.choice_input{ type: "text", name: "questions[][choices][]", placeholder: "A choice" }
         %a.btn.btn-primary.add_choice{ href: '#', :style => "display:none"} +
         %hr
 
