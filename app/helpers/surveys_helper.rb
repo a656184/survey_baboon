@@ -15,7 +15,12 @@ helpers do
               "#616161"]
 
     question.choices.each do |choice|
-      data << { value: choice.answers.count, color: colors.sample, label: choice.content }
+      label = choice.content
+      value = choice.answers.count
+      color = colors.shuffle.pop
+      if value > 0
+        data << { value: value, color: color, label: label }
+      end
     end
 
     return data.to_json
