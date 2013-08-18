@@ -14,9 +14,11 @@
       %option{value: answer.question.id }= answer.question.content
 
   %br
-  %canvas#questionDisplay{ width: 200, height: 200}
 
-  %hr
+  %canvas#questionDisplay{ width: 200, height: 200}
+  %div#chartLegend{ style: 'display: inline' }
+
+  %hr(style='clear: both')
 
   %h2 Your answers to this survey:
 

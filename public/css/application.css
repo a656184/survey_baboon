@@ -18,3 +18,17 @@ body { padding-top: 70px; }
   font-weight: bold;
   text-transform: uppercase;
 }
+
+.color-splotch {
+  display: inline-block;
+  margin-right: 5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+}
+.chart-label {
+  display: inline-block;
+}
+#questionDisplay {
+  float: left;
+}
