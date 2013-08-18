@@ -38,13 +38,12 @@ $(document).ready(function() {
 
 
   $('#question_board').on('keyup', '.choice_input', function () {
-   if(!($(this).val() === '')){
-      $(this).next(".add_choice").css("display","inline");
-    } else {
-      $(this).next(".add_choice").css("display","none");
-   }
- });
-
+     if(!($(this).val() === '')){
+        $(this).next(".add_choice").css("display","inline");
+      } else {
+        $(this).next(".add_choice").css("display","none");
+     }
+   });
 
   $("#question_board").on('click', '.add_choice', function(e){
     e.preventDefault();
@@ -56,7 +55,6 @@ $(document).ready(function() {
     $(this).closest(".choice").remove();
     console.log($(this).closest(".choice"));
   });
-
 
   function updateCounter(selector, max, min){
     var charCount = selector.val().length;
@@ -79,7 +77,6 @@ $(document).ready(function() {
     }
   };
 
-
   function updateSubmit(){
     console.log(titleValid)
     console.log(descriptionValid)
@@ -90,8 +87,6 @@ $(document).ready(function() {
       $('#submit').attr("disabled", "disabled");
     }
   }
+
 });
-
-
-
 
