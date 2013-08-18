@@ -7,6 +7,8 @@ gem 'bcrypt-ruby'
 # PostgreSQL driver
 gem 'pg'
 
+gem 'json'
+
 # Sinatra driver
 gem 'sinatra'
 gem 'sinatra-contrib'
