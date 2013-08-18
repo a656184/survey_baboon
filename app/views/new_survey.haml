@@ -10,10 +10,16 @@
   %form#new-survey{ method: "post", action: "/protected/surveys" }
 
     %label{ for: "title" } Title
-    %input.form-control{ type: "text", name: "survey[title]", placeholder: "My Survey" }
+    %input#title.form-control{ type: "text", name: "survey[title]", placeholder: "My Survey" }
+    %span.text_counter 25
+    characters left
+    %br
 
     %label{ for: "description" } Description
-    %input.form-control{ type: "text", name: "survey[description]", placeholder: "10 up to 250 characters" }
+    %input#description.form-control{ type: "text", name: "survey[description]", placeholder: "10 up to 250 characters" }
+    %span.text_counter 250
+    characters left
+    %br
 
     %hr
 
@@ -34,7 +40,7 @@
     %a.btn.btn-primary.add_question{ href: '#'} Add a question
     %hr
     %br
-    %input.btn.btn-success{ type: "submit", value: "Submit" }
+    %input.btn.btn-success#submit{ type: "submit", value: "Submit", disabled: 'disabled'}
 
 // -------------------------------------
 
