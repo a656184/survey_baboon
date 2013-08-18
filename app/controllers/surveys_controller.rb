@@ -63,6 +63,8 @@ post '/protected/surveys' do
     @error_messages.reverse!
     haml :new_survey
   end
+end
 
-
+get '/protected/surveys/questions/:question_id/chart_data' do
+  chart_data_for_question(params[:question_id])
 end
