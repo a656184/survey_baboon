@@ -4,6 +4,43 @@ $(document).ready(function() {
   // when we try to bind to them
 
   // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
+
+
+	// if you can help it, don't make statemachines
+	// this whole 'edit a boolean and check it later' model
+	// breaks pretty quickly. Try refactorying this into methods
+
+	/*
+
+		a start in this direction would be to split updateCounter into two methods.
+		one that updates the counter, and another that checks if the counter is over max value
+
+		updateCounter($obj, max, min){
+			changeDomToReflectCharCount()
+			if(isValid($obj, max, min)
+				colorItRed
+		}
+
+		once you have that, you can create methods
+
+		var isValid = function($obj, max, min){
+			//most of the logic that is currently in updateCounter
+			return whether or not it is valid
+		}
+
+		then you don't need the variables:
+			titleValid,
+			descriptionValid,
+			questionValid,
+			choiceValid
+
+		****TLDR****
+		- keep accessors and mutators separate
+		- if a function is both, split it into two
+		- avoid state
+
+	*/
+
   var titleValid = false
   var descriptionValid = false
   var questionValid = false
@@ -80,6 +117,8 @@ $(document).ready(function() {
   function updateSubmit(){
     console.log(titleValid)
     console.log(descriptionValid)
+		// instead of checking boolean values and hope they were set
+		// we can present the same information functions titleValid(), descriptionValid(), etc..
     if (titleValid && descriptionValid && questionValid && choiceValid) {
       $('#submit').removeAttr("disabled");
     }
