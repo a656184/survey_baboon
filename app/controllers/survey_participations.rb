@@ -14,11 +14,11 @@ get '/protected/surveys/:survey_id/participation' do
 
   @survey_participation = SurveyParticipation.where(user_id: current_user, survey_id: @survey)
 
-  if @survey_participation.empty?
-    haml :survey_show
-  else 
+  if !@survey_participation.empty? && @survey_participation.first.completion_status == "complete"
     @survey_participation = @survey_participation.first
     haml :survey_participation_show
+  else 
+    haml :survey_show
   end
 end
 
@@ -40,7 +40,7 @@ post '/protected/surveys/:survey_id' do
 	survey_participation.completion_status = 'complete'
 	survey_participation.save
 
-  prams[:survey].each do |question_id, choice_id|
+  params[:survey].each do |question_id, choice_id|
     
     answer = Answer.new
     answer.survey_participation = survey_participation

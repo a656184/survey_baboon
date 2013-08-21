@@ -1,7 +1,12 @@
 # show all surveys
 get '/protected/surveys' do
-  @surveys = Survey.all
   @user = User.find(session[:user_id])
+  @surveys = Survey.where(user_id: @user.id)
+  surveys_done = SurveyParticipation.where(user_id: @user.id, completion_status: "complete")
+  surveys_in_progress = SurveyParticipation.where(user_id: @user.id) - surveys_done
+  @surveys_taken = surveys_in_progress.concat(surveys_done)
+  @all_surveys = Survey.all - @surveys_taken.map(&:survey)
+
   haml :surveys
 end
 

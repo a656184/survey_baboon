@@ -1,10 +1,58 @@
-.container.well
-  %h1 Surveys!
-  %h2 Welcome #{@user.email}
-  %dl.dl-horizontal
-    - @surveys.each do |survey|
-      %a{ href: "/protected/surveys/#{survey.id}/participation"}
-        %dt.span9= survey.title
-      %dd= survey.description
-
+.container
+  .well
+    .row
+      #title_header.col-lg-4
+        %h2
+          %i
+            Great to see you, #{@user.name.split(" ").map(&:capitalize).join(" ")}!
+      .col-lg-8{:style => "padding-left:40px"}
+        %h3/
+        %center Take a Survey
+        %ul.list-unstyled
+          %li
+          .row
+            %hr/
+            .col-lg-7{:style => "padding-left: 80px"}
+              %select#takesurvey{:name => "takesurvey"}
+                - @all_surveys.each do |survey|
+                  %option{:value => "/protected/surveys/#{survey.id}/participation"} #{survey.title}
+            .col-lg-4
+              %a.btn#doasurvey#submit-buttons.btn-default{:href => "/"} Take this survey
+    .row{:style => "margin-top:60px;"}
+      .col-lg-6{:style => "padding-right:40px"}
+        %h3/
+        %center Surveys Created
+        %ul.list-unstyled
+          - Survey.where(user_id: @user.id).each do |survey|
+            %li
+              .row
+                %hr/
+                .col-lg-7
+                  %p#survey-url.lead= survey.title
+                .col-lg-8{:style => "width: 120%"}
+                  %a#survey-buttons.btn.btn-default{:href => "/surveys/edit/#{survey.id}"} Edit Survey
+                  /
+                  %a#survey-buttons.btn.btn-default{"data-id" => survey.id, :href => "/surveys/delete/#{survey.id}"} Delete Survey
+                  %a#survey-buttons.btn.btn-default{:href => "/survey/#{survey.id}"} View Results
+        %hr/
+      .col-lg-6{:style => "padding-left:40px"}
+        - unless @surveys_taken.empty?
+          %h3/
+          %center Surveys Taken / In Progress
+          %ul.list-unstyled
+            - @surveys_taken.each do |survey|
+              %li
+                .row
+                  %hr/
+                  .col-lg-7
+                    %p.lead= survey.survey.title
+                    - if survey.completion_status == "complete"
+                      %p
+                        %i Completed!
+                  .col-lg-4
+                    - if survey.completion_status == "complete"
+                      %a#submit-buttons.btn.btn-default{:href => "/protected/surveys/#{survey.survey.id}/participation"} See my answers
+                    - else
+                      %a#submit-buttons.btn.btn-default{:href => "/protected/surveys/#{survey.survey.id}/participation"} Continue survey
+          %hr/
 

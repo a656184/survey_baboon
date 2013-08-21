@@ -93,6 +93,12 @@ $(document).ready(function() {
     console.log($(this).closest(".choice"));
   });
 
+  $(document).on('click', '#doasurvey', function(e){
+    e.preventDefault();
+    url = $('#takesurvey').val();
+    window.location.href = url;
+  })
+
   function updateCounter(selector, max, min){
     var charCount = selector.val().length;
     var charCountLeft = max-charCount

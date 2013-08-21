@@ -32,3 +32,27 @@ body { padding-top: 70px; }
 #questionDisplay {
   float: left;
 }
+
+#survey-buttons:focus,
+#submit-buttons:focus {
+  outline: thin dotted #333;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+
+#survey-buttons:hover,
+#survey-buttons:focus,
+#submit-buttons:hover,
+#submit-buttons:focus {
+  background-color: #ddd;
+  text-decoration: none;
+}
+
+#survey-buttons,
+#submit-buttons {
+  font-family: sans-serif;
+  text-decoration: none;
+  color: black;
+  background-color: #fff;
+  border-color: #ddd;
+}

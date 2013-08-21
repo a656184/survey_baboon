@@ -1,6 +1,9 @@
-.well.container
+.container.well
   %h1 Sign Up
   %form#sign-up{ method: "post", action: "/users" }
+
+    %label{ for: "name" } Name
+    %input.form-control{ type: "text", name: "user[name]", placeholder: "Enter your name here!" }
 
     %label{ for: "email" } Email
     %input.form-control{ type: "email", name: "user[email]", placeholder: "e.g., me@example.com" }
