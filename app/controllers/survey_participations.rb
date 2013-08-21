@@ -31,24 +31,18 @@ post '/protected/surveys/:survey_id' do
 	# where t stands
 
 	# indentation is important!
+  puts "*" * 100
+  
 	survey = Survey.find_by_id(params[:survey_id])
 
-	survey_participation = SurveyParticipation.new
+  survey_participation = current_user.save_participation(survey)
 
-	survey_participation.user = current_user
-	survey_participation.survey = survey
-	survey_participation.completion_status = 'complete'
-	survey_participation.save
+  Answer.save_answers(params[:survey], survey_participation)
 
-  params[:survey].each do |question_id, choice_id|
-    
-    answer = Answer.new
-    answer.survey_participation = survey_participation
-
-    answer.question_id = question_id
-    answer.choice_id = choice_id
-    answer.save
-  
+  if params[:survey].count == survey.questions.count
+    survey_participation.update_attribute(:completion_status, "complete")
+  else
+    survey_participation.update_attribute(:completion_status, "incomplete")
   end
 
   redirect to '/protected/surveys'

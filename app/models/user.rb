@@ -28,5 +28,13 @@ class User < ActiveRecord::Base
     @password = Password.create(new_password)
     self.password_hash = @password
   end
+
+  def save_participation(survey)
+    survey_participation = SurveyParticipation.new
+    survey_participation.user = self
+    survey_participation.survey = survey
+    survey_participation.save 
+    return survey_participation
+  end
   
 end
