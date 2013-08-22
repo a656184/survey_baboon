@@ -1,4 +1,12 @@
 $(document).ready(function() {
+  $('#submit').click(function(e) {
+    if ($('legend').length > $("[type='radio']:checked").length)
+    {
+      // window.alert("You must answer all the questions to submit final answers.");
+      e.preventDefault();
+      $('hr').append('<div class="alert alert-danger" id="alert">You must answer every question before submitting</div>')
+    }
+  })
   // This is called after the document has loaded in its entirety
   // This guarantees that any elements we bind to will exist on the page
   // when we try to bind to them

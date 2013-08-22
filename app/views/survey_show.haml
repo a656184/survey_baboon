@@ -19,8 +19,9 @@
               %input{type: 'radio', name: "survey[#{question.id}]", value: choice.id }
               = choice.content
         %br
-    %hr
+    %hr{ id: "break"}
     %input.btn.btn-large.btn-primary{type: 'submit', value: 'Save and Finish Later'}
-    %input.btn.btn-large.btn-primary{type: 'submit', value: 'Submit Final Answers'}
+    %input.btn.btn-large.btn-primary{id: 'submit', type: 'submit', value: 'Submit Final Answers'}
+    %br
 
 
