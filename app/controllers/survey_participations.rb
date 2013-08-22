@@ -12,10 +12,14 @@
 get '/protected/surveys/:survey_id/participation' do
   @survey = Survey.find_by_id(params[:survey_id])
 
-  @survey_participation = SurveyParticipation.where(user_id: current_user, survey_id: @survey)
+  @survey_participation = SurveyParticipation.find_or_create_by_user_id_and_survey_id(user_id: current_user.id, survey_id: @survey.id)
+  p '#' * 50
+  p @survey_participation
+  p '^' * 50
+  p @survey_participation.id 
+  p '#' * 50
 
-  if !@survey_participation.empty? && @survey_participation.first.completion_status == "complete"
-    @survey_participation = @survey_participation.first
+  if @survey_participation && @survey_participation.completion_status == "complete"
     haml :survey_participation_show
   else 
     haml :survey_show

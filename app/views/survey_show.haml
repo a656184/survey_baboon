@@ -8,11 +8,19 @@
     - @survey.questions.each do |question|
       %fieldset
         %legend= question.content
+        - @answer = Answer.where("survey_participation_id = ? AND question_id = ?", @survey_participation, question.id).first
         - question.choices.each do |choice|
-          %label.radio.inline
-            %input{type: 'radio', name: "survey[#{question.id}]", value: choice.id }
-            = choice.content
+          - if @answer && @answer.choice_id == choice.id
+            %label.radio.inline
+              %input{type: 'radio', name: "survey[#{question.id}]", checked: 'checked', value: choice.id }
+              = choice.content
+          - else
+            %label.radio.inline
+              %input{type: 'radio', name: "survey[#{question.id}]", value: choice.id }
+              = choice.content
         %br
     %hr
-    %input.btn.btn-large.btn-primary{type: 'submit', value: 'Submit Survey'}
+    %input.btn.btn-large.btn-primary{type: 'submit', value: 'Save and Finish Later'}
+    %input.btn.btn-large.btn-primary{type: 'submit', value: 'Submit Final Answers'}
+
 
