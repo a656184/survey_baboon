@@ -26,9 +26,9 @@ end
 post '/protected/surveys/:survey_id' do  
 	survey = Survey.find_by_id(params[:survey_id])
 
-  survey_participation = current_user.save_participation(survey)
+  survey_participation = current_user.save_or_update_participation(survey)
 
-  Answer.save_answers(params[:survey], survey_participation)
+  Answer.save_or_update_answers(params[:survey], survey_participation)
 
   if params[:survey].count == survey.questions.count
     survey_participation.update_attribute(:completion_status, "complete")

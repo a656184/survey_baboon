@@ -29,11 +29,9 @@ class User < ActiveRecord::Base
     self.password_hash = @password
   end
 
-  def save_participation(survey)
-    survey_participation = SurveyParticipation.find_or_create_by_user_id_and_survey_id(
+  def save_or_update_participation(survey)
+    SurveyParticipation.find_or_create_by_user_id_and_survey_id(
       :user_id => self.id, :survey_id => survey.id)
-
-    return survey_participation
   end
   
 end
