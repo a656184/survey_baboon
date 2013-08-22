@@ -5,12 +5,11 @@ class Answer < ActiveRecord::Base
 
   def  self.save_answers(answers, survey_participation)
     answers.each do |question_id, choice_id|
-      answer = Answer.new
-      p survey_participation
-      answer.survey_participation = survey_participation
-      answer.question_id = question_id
-      answer.choice_id = choice_id
-      answer.save
+      answer = Answer.find_or_create_by_question_id_and_survey_participation_id(
+        :question_id => question_id, 
+        :survey_participation_id => survey_participation.id)
+
+      answer.update_attribute(:choice_id, choice_id)
     end
   end
 

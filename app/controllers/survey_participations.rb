@@ -23,16 +23,7 @@ get '/protected/surveys/:survey_id/participation' do
 end
 
 # submit answers for a survey
-post '/protected/surveys/:survey_id' do
-    
-	#	this is a 15 line code block that could absooutely be 
-	# extracted into the SurveyParticipation class.
-	# 
-	# where t stands
-
-	# indentation is important!
-  puts "*" * 100
-  
+post '/protected/surveys/:survey_id' do  
 	survey = Survey.find_by_id(params[:survey_id])
 
   survey_participation = current_user.save_participation(survey)

@@ -30,10 +30,9 @@ class User < ActiveRecord::Base
   end
 
   def save_participation(survey)
-    survey_participation = SurveyParticipation.new
-    survey_participation.user = self
-    survey_participation.survey = survey
-    survey_participation.save 
+    survey_participation = SurveyParticipation.find_or_create_by_user_id_and_survey_id(
+      :user_id => self.id, :survey_id => survey.id)
+
     return survey_participation
   end
   
